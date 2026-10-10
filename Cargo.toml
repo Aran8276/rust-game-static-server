@@ -1,0 +1,21 @@
+[package]
+name = "game-asset-server"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.80"
+
+[dependencies]
+axum = { version = "0.8", features = ["http2"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "signal", "time", "sync"] }
+tower-http = { version = "0.6", features = ["fs"] }
+http-body = "1"
+percent-encoding = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-appender = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
